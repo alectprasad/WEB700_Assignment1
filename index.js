@@ -27,4 +27,26 @@ function httpRequest(httpVerb, path) {
     }
     //no valid routing found
     return `404: Unable to process ${httpVerb} request for ${path}`;
-};
+}
+
+//function to generate random number between 0 and given parameter
+function getRandomInt(max) {
+    return Math.floor(Math.random() * max);
+}
+
+//automated testing function
+function automateTests() {
+    const testVerbs = ["GET", "POST"];
+    const testPaths = ["/", "/about", "/contact", "/login", "/panel" ,"/logout", "/randomPath1", "/randomPath2"];
+    function randomRequest() {
+        //construct random requests and print server response
+        randVerb = testVerbs[getRandomInt(testVerbs.length)];
+        randPath = testPaths[getRandomInt(testPaths.length)];
+        console.log(httpRequest(randVerb, randPath));
+    }
+    //wait for 1s between requests
+    setInterval(randomRequest, 1000);
+}
+
+//call testing function
+automateTests();
